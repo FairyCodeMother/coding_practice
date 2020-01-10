@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  	# Shortcut helper to add the via: [:get, :post] options to a match directive
+	def gp_match(path, options={})
+		match path, options.merge(via: [:get,:post])
+	end
+
+	root 'driver#index'
+
+
+
+
+	gp_match 'driver',           to: 'driver#index',           as: 'driver_index'
 end

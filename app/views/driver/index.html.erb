@@ -1,0 +1,40 @@
+<%= flash[:notice] -%>
+
+<style type="text/css">
+	.src {
+	  padding: 10px;
+	  width: 200px;
+	  height: 80px;
+	  float: left;
+	}
+
+	#day {
+	  padding: 10px;
+	  width: 900px;
+	  float: left;
+	  border-bottom: 4px solid #bababa;
+	}
+</style>
+
+<h1>Code Practice</h1>
+<p>Welcome to Coding Practice.</p>
+This app will run a series of coding tests that have been solved.<br>
+<br>
+<br>
+<%= form_tag(driver_index_path, :method => :post, :multipart => true,  :id=>'info-form') do %>
+	 <div>
+		<label>String to Reverse:</label>
+		<%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => true %><input type="submit" value="Submit" class="submit">
+	</div>
+	<div>
+		
+	</div>
+<%- end -%>
+<br>
+1. String reverse<br>
+2. String reverse<br>
+3. String reverse<br>
+4. String reverse<br>
+5. String reverse<br>
+6. String reverse<br>
+</ol>	

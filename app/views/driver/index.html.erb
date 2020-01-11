@@ -24,10 +24,11 @@ This app will run a series of coding tests that have been solved.<br>
 <%= form_tag(driver_index_path, :method => :post, :multipart => true,  :id=>'info-form') do %>
 	 <div>
 		<label>String to Reverse:</label>
-		<%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => true %><input type="submit" value="Submit" class="submit">
+		<%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => false %><input type="submit" value="Submit" class="submit">
 	</div>
 	<div>
-		
+		<label>FizzBuzz</label>
+		<%= text_field_tag "fizz", "", :placeholder=>"how many digits?", class: "form-control", :required => false %><input type="submit" value="Submit" class="submit">
 	</div>
 <%- end -%>
 <br>

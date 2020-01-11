@@ -33,15 +33,14 @@ class DriverController < ApplicationController
     # and for numbers which are multiples of both 3 and 5 print "FizzBuzz".
 	def fizzbuzz(digits)
 		result = ""
+		fizz = (number % 3 == 0)
+		buzz = (number % 5 == 0)
 		for number in 0..digits
-			if number%5 == 0 && number%3 == 0
-				result.concat(" FizzBuzz ")
-			elsif number%5 == 0
-				result.concat(" Buzz ")
-			elsif number%3 == 0
-				result.concat(" Fizz ")
-			else
-				result.concat(" #{number} ")
+			puts case
+				when fizz && buzz then result.concat(" FizzBuzz ")
+				when fizz then result.concat(" Fizz ")
+				when buzz then result.concat(" Buzz ")
+				else result.concat(" #{number} ")
 			end
 		end
 		result

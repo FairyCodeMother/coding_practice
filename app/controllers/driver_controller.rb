@@ -7,17 +7,16 @@ class DriverController < ApplicationController
 		puts "I AM: #{params.to_s}"
 
 		unless params["reverse"].nil? || params["reverse"].empty?
-			puts "I am going to reverse: #{params["reverse"]}"
 			result = reverse_string(params["reverse"])
 		end
 		unless params["fizz"].nil? || params["fizz"].empty?
-			puts "I am going to FizzBuzz: #{params["fizz"]}"
 			result = fizzbuzz(params["fizz"].to_i)
 		end
 
 		flash[:notice] = "FINAL RESULT: #{result}"
 	end
 
+	# Return the reverse for a given String
 	def reverse_string(word)
 		new_string_array = Array.new(word.size)
 		index = 0

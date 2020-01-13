@@ -1,19 +1,23 @@
 class DriverController < ApplicationController
-
+	require 'json'
 
 	def index
+		result = nil		
 
-		result = nil
-		puts "I AM: #{params.to_s}"
-
+		#TODO: replace this with something better
 		unless params["reverse"].nil? || params["reverse"].empty?
 			result = reverse_string(params["reverse"])
 		end
 		unless params["fizz"].nil? || params["fizz"].empty?
 			result = fizzbuzz(params["fizz"].to_i)
 		end
+		unless params["sum"].nil? || params["sum"].empty?
+			num_array = JSON.parse(params["sum"].split(";").first)
+			target = params["sum"].split(";").last.strip.to_i
+			result = sum(num_array, target)
+		end
 
-		flash[:notice] = "FINAL RESULT: #{result}"
+		flash[:result] = result.nil? ? nil : "FINAL RESULT:    #{result}"
 	end
 
 	# Return the reverse for a given String
@@ -32,9 +36,9 @@ class DriverController < ApplicationController
     # and for numbers which are multiples of both 3 and 5 print "FizzBuzz".
 	def fizzbuzz(digits)
 		result = ""
+		for number in 1..digits
 		fizz = (number % 3 == 0)
 		buzz = (number % 5 == 0)
-		for number in 0..digits
 			puts case
 				when fizz && buzz then result.concat(" FizzBuzz ")
 				when fizz then result.concat(" Fizz ")
@@ -43,6 +47,16 @@ class DriverController < ApplicationController
 			end
 		end
 		result
+	end
+
+	# For the given array, return the indices that sum to the target value
+	def sum(num_array, target)
+		num_array.each_with_index do |value, val_index|
+	        remainder = target - value
+	        remainder_index = num_array.index(remainder)
+	        next if remainder_index == val_index
+	        return "#{val_index}, #{remainder_index}" if remainder_index
+	    end
 	end
 
 end

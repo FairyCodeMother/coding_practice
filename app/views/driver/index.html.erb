@@ -1,18 +1,12 @@
-<%= flash[:notice] -%>
+
 
 <style type="text/css">
-	.src {
-	  padding: 10px;
-	  width: 200px;
-	  height: 80px;
-	  float: left;
+	th {
+		text-align: right;
+		padding-right: 8px;
 	}
-
-	#day {
-	  padding: 10px;
-	  width: 900px;
-	  float: left;
-	  border-bottom: 4px solid #bababa;
+	tr {
+		height: 30px;
 	}
 </style>
 
@@ -20,22 +14,22 @@
 <p>Welcome to Coding Practice.</p>
 This app will run a series of coding tests that have been solved.<br>
 <br>
+<%= flash[:result].nil? ? " " : flash[:result] %><br>
 <br>
 <%= form_tag(driver_index_path, :method => :post, :multipart => true,  :id=>'info-form') do %>
-	 <div>
-		<label>String to Reverse:</label>
-		<%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => false %><input type="submit" value="Submit" class="submit">
-	</div>
-	<div>
-		<label>FizzBuzz</label>
-		<%= text_field_tag "fizz", "", :placeholder=>"how many digits?", class: "form-control", :required => false %><input type="submit" value="Submit" class="submit">
-	</div>
+<table>
+	<tr><td colspan="3" style="text-align: right;"><input type="submit" value="Submit" class="submit"></td></tr>
+	<tr>
+		<th>String to Reverse</th>
+		<td><%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => false %></td>
+	</tr>
+	<tr>
+		<th>FizzBuzz</th>
+		<td><%= text_field_tag "fizz", "", :placeholder=>"how many digits?", class: "form-control", :required => false %></td>
+	</tr>
+	<tr>
+		<th>Sum Two In Array</th>
+		<td><%= text_field_tag "sum", "", :placeholder=>"[1, 2, 7, 10, 4]; 6", class: "form-control", :required => false %></td>
+	</tr>
+</table>
 <%- end -%>
-<br>
-1. String reverse<br>
-2. String reverse<br>
-3. String reverse<br>
-4. String reverse<br>
-5. String reverse<br>
-6. String reverse<br>
-</ol>	

@@ -16,17 +16,17 @@ class DriverController < ApplicationController
 			result = fizzbuzz(params["fizz"].to_i)
 		end
 		unless params["sum"].nil? || params["sum"].empty?
-			num_array = JSON.parse(params["sum"].split(";").first)
-			target = params["sum"].split(";").last.strip.to_i
-			result = sum(num_array, target)
+			num_array = params["sum"].split(";").first.split(/\s*,\s*/).map{|val| val.to_i }
+			target = params["sum"].split(";").last.to_i
+			result = ManipulateArrayController.new.sum(num_array, target)
 		end
 		unless params["linked"].nil? || params["linked"].empty?
 			result = linked(JSON.parse(params["linked"]))
 		end		
 		unless params["rand_arr"].nil? || params["rand_arr"].empty?
-			size = params["rand_arr"].split(",").first.strip.to_i
-			max_val = params["rand_arr"].split(",").last.strip.to_i
-			result = rand_arr(size, max_val)
+			size = params["rand_arr"].split(",").first.to_i
+			max_val = params["rand_arr"].split(",").last.to_i
+			result = ManipulateArrayController.new.rand_arr(size, max_val)
 		end		
 		unless params["return_dupes"].nil? || params["return_dupes"].empty?
 			array = params["return_dupes"].split(/\s*,\s*/)
@@ -63,16 +63,6 @@ class DriverController < ApplicationController
 			end
 		end
 		result
-	end
-
-	# For the given array, return the indices that sum to the target value
-	def sum(num_array, target)
-		num_array.each_with_index do |value, val_index|
-	        remainder = target - value
-	        remainder_index = num_array.index(remainder)
-	        next if remainder_index == val_index
-	        return "#{val_index}, #{remainder_index}" if remainder_index
-	    end
 	end
 
 	# For the given array, create a singly LinkedList

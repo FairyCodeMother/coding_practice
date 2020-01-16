@@ -21,15 +21,46 @@ This app will run a series of coding tests that have been solved.<br>
 	<tr><td colspan="3" style="text-align: right;"><input type="submit" value="Submit" class="submit"></td></tr>
 	<tr>
 		<th>String to Reverse</th>
-		<td><%= text_field_tag "reverse", "", :placeholder=>"string to reverse", class: "form-control", :required => false %></td>
+		<td><%= text_field_tag "reverse", "", :placeholder=>"string", class: "form-control", :required => false %></td>
+	</tr>
+	<tr>
+		<th>Array to Reverse</th>
+		<td><%= text_field_tag "reverse_arr", "", :placeholder=>"comma-separated string", class: "form-control", :required => false %></td>
 	</tr>
 	<tr>
 		<th>FizzBuzz</th>
 		<td><%= text_field_tag "fizz", "", :placeholder=>"how many digits?", class: "form-control", :required => false %></td>
 	</tr>
 	<tr>
-		<th>Sum Two In Array</th>
-		<td><%= text_field_tag "sum", "", :placeholder=>"[1, 2, 7, 10, 4]; 6", class: "form-control", :required => false %></td>
+		<th>Sum Two In Array that<br>Match Target Integer</th>
+		<td><%= text_field_tag "sum", "", :placeholder=>"comma-separated integers; integer", class: "form-control", :required => false %></td>
+	</tr>
+	<tr>
+		<th>Fill an array of size X with random<br>integers with a max value of Y</th>
+		<td><%= text_field_tag "rand_arr", "", :placeholder=>"size integer, max_val integer", class: "form-control", :required => false %></td>
+	</tr>
+	<tr>
+		<th>Return Array of Duplicates</th>
+		<td><%= text_field_tag "return_dupes", "", :placeholder=>"comma-separated string", class: "form-control", :required => false %></td>
 	</tr>
 </table>
 <%- end -%>
+<br>
+<br>
+TODO:
+<ul>
+	<li>Return a binary</li>
+	<li>Implement Singly LinkedList</li>
+	<li>Implement Doubly LinkedList</li>
+	<li>Reverse Linked List</li>
+	<li>Delete traget value from LinkedList</li>
+	<li>Find duplicates in array</li>
+	<li>Find and insert missing numbers to a LinkedList</li>
+	<li>Implement Mergesort</li>
+	<li>Implement Quicksort</li>
+	<li>Implement Bubblesort</li>
+	<li>Implement a binary tree</li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>

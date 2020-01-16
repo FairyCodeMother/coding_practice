@@ -8,6 +8,10 @@ class DriverController < ApplicationController
 		unless params["reverse"].nil? || params["reverse"].empty?
 			result = reverse_string(params["reverse"])
 		end
+		unless params["reverse_arr"].nil? || params["reverse_arr"].empty?
+			array = params["reverse_arr"].split(/\s*,\s*/)
+			result = ManipulateArrayController.new.reverse(array)
+		end
 		unless params["fizz"].nil? || params["fizz"].empty?
 			result = fizzbuzz(params["fizz"].to_i)
 		end
@@ -16,6 +20,18 @@ class DriverController < ApplicationController
 			target = params["sum"].split(";").last.strip.to_i
 			result = sum(num_array, target)
 		end
+		unless params["linked"].nil? || params["linked"].empty?
+			result = linked(JSON.parse(params["linked"]))
+		end		
+		unless params["rand_arr"].nil? || params["rand_arr"].empty?
+			size = params["rand_arr"].split(",").first.strip.to_i
+			max_val = params["rand_arr"].split(",").last.strip.to_i
+			result = rand_arr(size, max_val)
+		end		
+		unless params["return_dupes"].nil? || params["return_dupes"].empty?
+			array = params["return_dupes"].split(/\s*,\s*/)
+			result = ManipulateArrayController.new.return_dupes(array)
+		end
 
 		flash[:result] = result.nil? ? nil : "FINAL RESULT:    #{result}"
 	end
@@ -23,7 +39,7 @@ class DriverController < ApplicationController
 	# Return the reverse for a given String
 	def reverse_string(word)
 		new_string_array = Array.new(word.size)
-		index = 0
+		index = 1
 		while index < word.size
 			new_string_array[index] = word[word.size-index]
 			index += 1
@@ -59,4 +75,40 @@ class DriverController < ApplicationController
 	    end
 	end
 
+	# For the given array, create a singly LinkedList
+	def linked(values)
+		new_ll = LinkedList.new(values)
+	end
+
+	#Make an array of size filled with random values. The max value of the random numbers must <= max_val
+	def rand_arr(size, max_val)
+		# naive way
+		# new_arr = Array.new
+		# i = 0
+		# while i < size
+		# 	new_arr.push(rand(max_val))
+		# 	i += 1
+		# end
+		# new_arr.join(", ")
+
+		# cool way
+		new_arr = size.times.map{ rand(max_val)}
+		new_arr.join(", ")
+	end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
